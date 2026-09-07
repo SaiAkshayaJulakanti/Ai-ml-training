@@ -1,0 +1,20 @@
+# Virtual Environments
+venv_aiml/
+.venv/
+env/
+venv/
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest / Test Artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE / System
+.vscode/
+.idea/
+.DS_Store
