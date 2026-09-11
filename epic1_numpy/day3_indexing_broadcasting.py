@@ -8,9 +8,33 @@ manipulation used throughout ML pipelines.
 from __future__ import annotations
 
 import logging
+import sys
+from pathlib import Path
 from typing import List, Tuple
 
 import numpy as np
+
+# Needed to import the shared common/numpy_utils.py module (used by
+# normalize_broadcast below, refactored here as of the Day 5 project).
+_project_root = Path(__file__).parent.parent
+if str(_project_root) not in sys.path:
+    sys.path.insert(0, str(_project_root))
+
+try:
+    from common.numpy_utils import zscore_normalize
+except ImportError:
+    # Fallback so this file still runs standalone even if common/ isn't
+    # on the path for some reason (e.g. Day 3 run in isolation before
+    # Day 5's common/ module existed in an older checkout).
+    def zscore_normalize(arr: np.ndarray, axis: int = 0) -> np.ndarray:
+        mean = arr.mean(axis=axis)
+        std = arr.std(axis=axis)
+        if np.any(std == 0):
+            raise ValueError(
+                "Cannot normalize: at least one slice has zero standard "
+                "deviation (all identical values), which would divide by zero."
+            )
+        return (arr - mean) / std
 
 logging.basicConfig(
     level=logging.INFO,
@@ -253,17 +277,11 @@ def normalize_broadcast(arr: np.ndarray) -> np.ndarray:
     if arr.ndim != 2:
         raise ValueError(f"normalize_broadcast requires a 2D array, got ndim={arr.ndim}")
 
-    col_mean = arr.mean(axis=0)   # shape (n_cols,)
-    col_std = arr.std(axis=0)     # shape (n_cols,)
-
-    if np.any(col_std == 0):
-        raise ValueError(
-            "Cannot normalize: at least one column has zero standard "
-            "deviation (all identical values), which would divide by zero."
-        )
-
-    # Broadcasting: (n_rows, n_cols) - (n_cols,) -> (n_rows, n_cols)
-    return (arr - col_mean) / col_std
+    # The actual normalization math (mean/std + broadcasting, with the
+    # zero-std ValueError guard) is refactored into common/numpy_utils.py
+    # as of the Day 5 project, so it has one single implementation shared
+    # across the whole training repo instead of being duplicated here.
+    return zscore_normalize(arr, axis=0)
 
 
 # --------------------------------------------------------------------------

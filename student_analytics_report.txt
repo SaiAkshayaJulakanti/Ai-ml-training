@@ -1,0 +1,33 @@
+============================================================
+STUDENT PERFORMANCE ANALYTICS REPORT
+============================================================
+
+Dataset: 200 students x 5 subjects
+
+--- Per-Subject Statistics ---
+Math               mean= 69.65  median= 70.53  std= 13.66  min= 36.83  max=100.00
+Science            mean= 69.66  median= 69.56  std= 14.95  min= 29.55  max=100.00
+English            mean= 69.81  median= 70.31  std= 14.20  min= 21.38  max=100.00
+History            mean= 70.89  median= 71.31  std= 14.12  min= 30.24  max=100.00
+ComputerScience    mean= 70.72  median= 69.59  std= 14.63  min= 30.70  max=100.00
+
+--- Top 5 Ranked Students (by average score) ---
+  Student #84   average score: 85.37
+  Student #178  average score: 84.84
+  Student #74   average score: 84.80
+  Student #124  average score: 83.50
+  Student #147  average score: 83.17
+
+--- At-Risk Students (average < 60.0) ---
+  Count: 13
+  Student IDs: [2, 3, 7, 52, 69, 76, 91, 105, 113, 127, 166, 195, 198]
+
+--- Subject Correlation Matrix ---
+                          Math     Science     English     History  ComputerSc
+Math                     1.000      -0.073       0.054      -0.013      -0.037
+Science                 -0.073       1.000       0.053      -0.013       0.040
+English                  0.054       0.053       1.000       0.026       0.130
+History                 -0.013      -0.013       0.026       1.000      -0.042
+ComputerScience         -0.037       0.040       0.130      -0.042       1.000
+
+============================================================
