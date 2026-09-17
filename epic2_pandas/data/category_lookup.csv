@@ -1,0 +1,8 @@
+product_category,department,standard_discount_pct,supplier_region
+Electronics,Tech,5.0,East
+Clothing,Apparel,10.0,South
+Home & Kitchen,Home,7.5,North
+Books,Media,15.0,East
+Sports,Recreation,8.0,West
+Toys,Recreation,12.0,West
+Garden & Outdoor,Home,6.0,North
