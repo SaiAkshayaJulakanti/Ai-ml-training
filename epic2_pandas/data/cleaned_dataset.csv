@@ -1,0 +1,151 @@
+order_id,customer_name,product_category,quantity,unit_price,order_date,region,status
+1001,Casey Rodriguez,Home & Kitchen,9,390.6,2026-01-01,North,Delivered
+1002,Jamie Jones,Sports,6,71.6,2026-01-02,North,Shipped
+1003,Casey Rodriguez,Electronics,5,270.35,2026-01-04,South,Shipped
+1004,Alex Miller,Toys,1,259.54,2026-01-05,Central,Cancelled
+1005,Taylor Smith,Books,6,429.5,2026-01-07,East,Delivered
+1006,Riley Martinez,Electronics,5,284.65,2026-01-09,West,Delivered
+1007,Avery Davis,Clothing,2,195.62,2026-01-10,East,Cancelled
+1008,Casey Rodriguez,Books,6,321.58,2026-01-12,North,Delivered
+1009,Casey Rodriguez,Clothing,8,136.9,2026-01-13,South,Delivered
+1010,Quinn Jones,Electronics,1,74.19,2026-01-15,North,Delivered
+1011,Riley Brown,Books,7,241.55,2026-01-17,West,Delivered
+1012,Jordan Martinez,Sports,2,211.36,2026-01-18,North,Delivered
+1013,Avery Miller,Electronics,7,284.65,2026-01-20,East,Delivered
+1014,Casey Rodriguez,Clothing,6,186.92,2026-01-22,Central,Delivered
+1015,Riley Jones,Clothing,1,186.36,2026-01-23,East,Shipped
+1016,Casey Williams,Books,9,167.11,2026-01-25,East,Shipped
+1017,Alex Garcia,Sports,2,192.83,2026-01-26,East,Pending
+1018,Quinn Smith,Sports,6,344.44,2026-01-28,West,Shipped
+1019,Quinn Rodriguez,Toys,2,151.95,2026-01-30,East,Shipped
+1020,Taylor Miller,Sports,9,474.68,2026-01-31,West,Delivered
+1021,Jordan Davis,Clothing,7,458.59,2026-02-02,Central,Delivered
+1022,Avery Brown,Electronics,8,243.05,2026-02-04,East,Delivered
+1023,Alex Martinez,Books,4,167.54,2026-02-04,East,Delivered
+1024,Casey Rodriguez,Toys,5,270.04,2026-02-07,North,Cancelled
+1025,Jamie Davis,Clothing,6,425.04,2026-02-08,South,Delivered
+1026,Avery Johnson,Clothing,8,328.03,2026-02-10,Central,Delivered
+1027,Morgan Jones,Clothing,8,403.17,2026-02-12,East,Delivered
+1028,Casey Smith,Electronics,6,268.7,2026-02-13,South,Delivered
+1029,Riley Johnson,Electronics,6,318.29,2026-02-15,East,Shipped
+1030,Avery Miller,Books,6,147.64,2026-02-17,East,Delivered
+1031,Drew Davis,Books,3,368.77,2026-02-18,East,Delivered
+1032,Morgan Martinez,Clothing,8,105.19,2026-02-20,West,Delivered
+1033,Casey Rodriguez,Clothing,3,348.93,2026-02-21,South,Delivered
+1034,Drew Brown,Sports,8,431.06,2026-02-23,West,Delivered
+1035,Alex Jones,Home & Kitchen,6,284.65,2026-02-25,East,Delivered
+1036,Avery Johnson,Sports,3,309.12,2026-02-26,Central,Delivered
+1037,Casey Johnson,Toys,6,52.07,2026-02-28,North,Delivered
+1038,Jamie Jones,Clothing,5,364.23,2026-03-02,North,Shipped
+1039,Morgan Williams,Clothing,7,46.82,2026-03-03,East,Pending
+1040,Riley Miller,Toys,6,468.29,2026-03-05,East,Pending
+1041,Drew Jones,Books,9,73.02,2026-03-06,West,Pending
+1042,Casey Rodriguez,Clothing,8,479.65,2026-03-08,East,Cancelled
+1043,Jamie Davis,Books,7,401.44,2026-03-10,Central,Delivered
+1044,Casey Rodriguez,Books,6,298.87,2026-03-11,East,Delivered
+1045,Avery Rodriguez,Toys,3,392.4,2026-03-13,North,Delivered
+1046,Casey Rodriguez,Clothing,4,398.58,2026-03-15,North,Delivered
+1047,Quinn Brown,Toys,2,473.28,2026-03-16,Central,Shipped
+1048,Quinn Williams,Toys,4,130.42,2026-03-18,North,Delivered
+1049,Taylor Miller,Clothing,9,297.09,2026-03-19,Central,Cancelled
+1050,Jamie Johnson,Clothing,4,52.05,2026-03-21,South,Shipped
+1051,Quinn Johnson,Books,2,310.0,2026-03-23,North,Delivered
+1052,Quinn Smith,Electronics,6,89.79,2026-03-24,South,Delivered
+1053,Avery Davis,Clothing,9,284.65,2026-03-26,West,Pending
+1054,Avery Miller,Home & Kitchen,6,288.35,2026-03-26,East,Shipped
+1055,Casey Davis,Toys,3,284.65,2026-03-26,West,Delivered
+1056,Taylor Davis,Toys,5,263.7,2026-03-31,West,Delivered
+1057,Riley Jones,Electronics,5,383.14,2026-04-01,East,Delivered
+1058,Casey Rodriguez,Toys,3,400.63,2026-04-03,West,Delivered
+1059,Alex Johnson,Electronics,3,248.62,2026-04-05,Central,Delivered
+1060,Taylor Johnson,Sports,3,301.8,2026-04-06,East,Shipped
+1061,Casey Miller,Toys,6,465.96,2026-04-08,North,Pending
+1062,Jamie Jones,Toys,7,64.27,2026-04-08,East,Delivered
+1063,Quinn Garcia,Clothing,8,62.97,2026-04-11,Central,Delivered
+1064,Alex Davis,Toys,8,48.42,2026-04-11,South,Delivered
+1065,Riley Miller,Electronics,9,330.64,2026-04-14,Central,Delivered
+1066,Riley Garcia,Books,1,212.21,2026-04-14,East,Shipped
+1067,Alex Garcia,Home & Kitchen,8,284.65,2026-04-18,West,Delivered
+1068,Avery Brown,Clothing,1,337.26,2026-04-19,South,Delivered
+1069,Jamie Smith,Clothing,5,170.15,2026-04-21,Central,Delivered
+1070,Morgan Jones,Sports,6,449.69,2026-04-23,East,Delivered
+1071,Drew Williams,Clothing,6,382.45,2026-04-24,South,Delivered
+1072,Taylor Jones,Books,2,138.91,2026-04-26,East,Delivered
+1073,Drew Rodriguez,Home & Kitchen,2,185.28,2026-04-27,East,Pending
+1074,Casey Rodriguez,Home & Kitchen,8,160.65,2026-04-29,East,Shipped
+1075,Casey Rodriguez,Toys,3,284.65,2026-05-01,East,Pending
+1076,Quinn Williams,Electronics,3,78.15,2026-05-02,South,Delivered
+1077,Drew Williams,Clothing,9,468.38,2026-05-04,North,Cancelled
+1078,Casey Miller,Sports,2,284.65,2026-05-06,East,Shipped
+1079,Jordan Garcia,Home & Kitchen,9,194.74,2026-05-06,South,Cancelled
+1080,Riley Davis,Clothing,9,366.19,2026-05-09,East,Shipped
+1081,Casey Rodriguez,Electronics,6,278.73,2026-05-10,East,Cancelled
+1082,Casey Jones,Toys,2,468.39,2026-05-12,West,Delivered
+1083,Casey Rodriguez,Toys,2,391.25,2026-05-12,East,Delivered
+1084,Morgan Johnson,Clothing,3,242.29,2026-05-12,West,Cancelled
+1085,Morgan Smith,Electronics,6,191.3,2026-05-17,East,Delivered
+1086,Casey Rodriguez,Electronics,2,493.38,2026-05-17,West,Pending
+1087,Avery Davis,Electronics,5,360.29,2026-05-20,West,Pending
+1088,Jamie Jones,Sports,2,475.84,2026-05-22,East,Shipped
+1089,Avery Johnson,Toys,5,284.65,2026-05-23,South,Shipped
+1090,Drew Garcia,Clothing,1,426.01,2026-05-25,West,Delivered
+1091,Drew Johnson,Sports,7,284.65,2026-05-27,South,Cancelled
+1092,Casey Miller,Clothing,1,65.35,2026-05-27,East,Cancelled
+1093,Casey Jones,Home & Kitchen,2,296.19,2026-05-30,North,Delivered
+1094,Jordan Brown,Books,2,344.62,2026-06-01,East,Delivered
+1095,Casey Rodriguez,Sports,8,11.09,2026-06-02,East,Delivered
+1096,Jamie Miller,Toys,1,229.89,2026-06-04,West,Cancelled
+1097,Jamie Brown,Electronics,4,284.65,2026-06-05,East,Delivered
+1098,Drew Smith,Clothing,6,151.2,2026-06-07,South,Shipped
+1099,Morgan Johnson,Clothing,5,231.98,2026-06-07,Central,Delivered
+1100,Morgan Martinez,Clothing,7,223.95,2026-06-10,East,Shipped
+1101,Morgan Martinez,Clothing,8,154.45,2026-06-12,Central,Delivered
+1102,Casey Miller,Sports,6,459.63,2026-06-14,West,Delivered
+1103,Casey Williams,Clothing,8,284.65,2026-06-15,East,Delivered
+1104,Avery Martinez,Toys,3,284.65,2026-06-17,Central,Pending
+1105,Taylor Davis,Home & Kitchen,9,498.53,2026-06-18,North,Shipped
+1106,Taylor Davis,Books,5,284.65,2026-06-20,Central,Shipped
+1107,Avery Jones,Home & Kitchen,7,145.53,2026-06-22,Central,Shipped
+1108,Avery Williams,Electronics,8,419.26,2026-06-23,East,Delivered
+1109,Alex Smith,Toys,6,57.68,2026-06-25,West,Delivered
+1110,Casey Rodriguez,Electronics,8,499.56,2026-06-27,East,Delivered
+1111,Jordan Jones,Clothing,5,334.51,2026-06-28,South,Delivered
+1112,Avery Williams,Clothing,1,326.81,2026-06-30,West,Pending
+1113,Avery Brown,Clothing,5,49.77,2026-07-01,South,Delivered
+1114,Quinn Garcia,Clothing,2,449.03,2026-07-03,South,Cancelled
+1115,Riley Johnson,Electronics,9,19.35,2026-07-05,East,Shipped
+1116,Casey Rodriguez,Sports,3,284.65,2026-07-06,Central,Cancelled
+1117,Alex Davis,Toys,3,75.8,2026-07-08,South,Shipped
+1118,Casey Davis,Electronics,3,389.5,2026-07-10,East,Delivered
+1119,Casey Rodriguez,Clothing,6,103.11,2026-07-11,East,Delivered
+1120,Morgan Miller,Books,6,455.77,2026-07-13,East,Pending
+1121,Jordan Garcia,Toys,9,329.85,2026-07-14,East,Shipped
+1122,Alex Miller,Sports,4,22.9,2026-07-16,North,Delivered
+1123,Jamie Smith,Sports,3,7.69,2026-07-18,Central,Delivered
+1124,Avery Jones,Books,1,30.57,2026-07-19,Central,Pending
+1125,Casey Rodriguez,Home & Kitchen,1,304.93,2026-07-21,Central,Delivered
+1126,Jordan Jones,Clothing,4,401.73,2026-07-23,North,Delivered
+1127,Jordan Brown,Toys,9,123.08,2026-07-24,North,Shipped
+1128,Jamie Johnson,Sports,5,425.46,2026-07-26,South,Delivered
+1129,Casey Rodriguez,Electronics,9,284.65,2026-07-27,East,Delivered
+1130,Jordan Garcia,Sports,1,401.48,2026-07-29,South,Shipped
+1131,Avery Johnson,Electronics,6,464.26,2026-07-31,East,Delivered
+1132,Taylor Martinez,Sports,8,387.19,2026-08-01,East,Shipped
+1133,Drew Garcia,Sports,1,350.57,2026-08-03,West,Delivered
+1134,Casey Brown,Electronics,1,419.8,2026-08-05,South,Pending
+1135,Jamie Garcia,Home & Kitchen,4,24.87,2026-08-05,North,Delivered
+1136,Casey Rodriguez,Electronics,9,104.88,2026-08-08,West,Delivered
+1137,Casey Rodriguez,Books,7,66.84,2026-08-09,East,Shipped
+1138,Casey Jones,Toys,1,254.74,2026-08-11,North,Delivered
+1139,Casey Davis,Electronics,8,373.87,2026-08-13,East,Delivered
+1140,Alex Smith,Clothing,8,316.86,2026-08-13,Central,Delivered
+1141,Taylor Jones,Toys,8,426.31,2026-08-16,West,Cancelled
+1142,Jamie Jones,Clothing,6,81.83,2026-08-18,East,Shipped
+1143,Casey Martinez,Electronics,3,368.64,2026-08-19,East,Shipped
+1144,Jordan Garcia,Home & Kitchen,9,100.56,2026-08-19,South,Delivered
+1145,Riley Jones,Clothing,3,139.03,2026-08-22,West,Delivered
+1146,Quinn Williams,Books,6,356.4,2026-08-24,North,Delivered
+1147,Casey Rodriguez,Clothing,6,490.2,2026-08-26,South,Pending
+1148,Riley Garcia,Toys,8,307.71,2026-08-27,West,Shipped
+1149,Quinn Jones,Books,6,31.98,2026-08-29,West,Cancelled
+1150,Taylor Smith,Clothing,6,310.07,2026-08-31,North,Pending
