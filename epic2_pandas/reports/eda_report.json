@@ -1,0 +1,280 @@
+{
+  "shape": [
+    150,
+    11
+  ],
+  "univariate": {
+    "numeric_stats": {
+      "order_id": {
+        "mean": 1075.5,
+        "median": 1075.5,
+        "std": 43.445367992456916,
+        "min": 1001.0,
+        "max": 1150.0,
+        "25%": 1038.25,
+        "75%": 1112.75
+      },
+      "quantity": {
+        "mean": 5.2,
+        "median": 6.0,
+        "std": 2.577653060831388,
+        "min": 1.0,
+        "max": 9.0,
+        "25%": 3.0,
+        "75%": 7.75
+      },
+      "unit_price": {
+        "mean": 270.1969333333333,
+        "median": 284.65,
+        "std": 136.85116087737603,
+        "min": 7.69,
+        "max": 499.56,
+        "25%": 156.0,
+        "75%": 382.9675
+      },
+      "standard_discount_pct": {
+        "mean": 9.63,
+        "median": 10.0,
+        "std": 3.0954773243834,
+        "min": 5.0,
+        "max": 15.0,
+        "25%": 7.5,
+        "75%": 12.0
+      }
+    },
+    "categorical_value_counts": {
+      "customer_name": {
+        "Casey Rodriguez": 25,
+        "Jamie Jones": 5,
+        "Avery Johnson": 4,
+        "Casey Miller": 4,
+        "Jordan Garcia": 4,
+        "Avery Davis": 3,
+        "Avery Miller": 3,
+        "Riley Jones": 3,
+        "Avery Brown": 3,
+        "Morgan Martinez": 3,
+        "Quinn Williams": 3,
+        "Casey Davis": 3,
+        "Taylor Davis": 3,
+        "Casey Jones": 3,
+        "Alex Miller": 2,
+        "Taylor Smith": 2,
+        "Quinn Jones": 2,
+        "Casey Williams": 2,
+        "Alex Garcia": 2,
+        "Quinn Smith": 2,
+        "Taylor Miller": 2,
+        "Jamie Davis": 2,
+        "Morgan Jones": 2,
+        "Riley Johnson": 2,
+        "Riley Miller": 2,
+        "Jamie Johnson": 2,
+        "Quinn Garcia": 2,
+        "Alex Davis": 2,
+        "Riley Garcia": 2,
+        "Jamie Smith": 2,
+        "Drew Williams": 2,
+        "Taylor Jones": 2,
+        "Morgan Johnson": 2,
+        "Drew Garcia": 2,
+        "Jordan Brown": 2,
+        "Avery Jones": 2,
+        "Avery Williams": 2,
+        "Alex Smith": 2,
+        "Jordan Jones": 2,
+        "Riley Martinez": 1,
+        "Riley Brown": 1,
+        "Jordan Martinez": 1,
+        "Quinn Rodriguez": 1,
+        "Jordan Davis": 1,
+        "Alex Martinez": 1,
+        "Casey Smith": 1,
+        "Drew Davis": 1,
+        "Drew Brown": 1,
+        "Alex Jones": 1,
+        "Casey Johnson": 1,
+        "Morgan Williams": 1,
+        "Drew Jones": 1,
+        "Avery Rodriguez": 1,
+        "Quinn Brown": 1,
+        "Quinn Johnson": 1,
+        "Alex Johnson": 1,
+        "Taylor Johnson": 1,
+        "Drew Rodriguez": 1,
+        "Riley Davis": 1,
+        "Morgan Smith": 1,
+        "Drew Johnson": 1,
+        "Jamie Miller": 1,
+        "Jamie Brown": 1,
+        "Drew Smith": 1,
+        "Avery Martinez": 1,
+        "Morgan Miller": 1,
+        "Taylor Martinez": 1,
+        "Casey Brown": 1,
+        "Jamie Garcia": 1,
+        "Casey Martinez": 1
+      },
+      "product_category": {
+        "Clothing": 42,
+        "Electronics": 27,
+        "Toys": 27,
+        "Sports": 21,
+        "Books": 20,
+        "Home & Kitchen": 13
+      },
+      "region": {
+        "East": 54,
+        "West": 27,
+        "South": 24,
+        "North": 23,
+        "Central": 22
+      },
+      "status": {
+        "Delivered": 84,
+        "Shipped": 33,
+        "Pending": 17,
+        "Cancelled": 16
+      },
+      "department": {
+        "Recreation": 48,
+        "Apparel": 42,
+        "Tech": 27,
+        "Media": 20,
+        "Home": 13
+      },
+      "supplier_region": {
+        "West": 48,
+        "East": 47,
+        "South": 42,
+        "North": 13
+      }
+    },
+    "correlation_matrix": {
+      "order_id": {
+        "order_id": 1.0,
+        "quantity": -0.021035503169673512,
+        "unit_price": -0.014048092705274646,
+        "standard_discount_pct": -0.08302916931464224
+      },
+      "quantity": {
+        "order_id": -0.021035503169673512,
+        "quantity": 1.0,
+        "unit_price": -0.02143299059317418,
+        "standard_discount_pct": -0.09201930811378489
+      },
+      "unit_price": {
+        "order_id": -0.014048092705274646,
+        "quantity": -0.02143299059317418,
+        "unit_price": 1.0,
+        "standard_discount_pct": -0.08976592730315829
+      },
+      "standard_discount_pct": {
+        "order_id": -0.08302916931464224,
+        "quantity": -0.09201930811378489,
+        "unit_price": -0.08976592730315829,
+        "standard_discount_pct": 1.0
+      }
+    }
+  },
+  "outliers": {
+    "order_id": {
+      "count": 0,
+      "outlier_values": []
+    },
+    "quantity": {
+      "count": 0,
+      "outlier_values": []
+    },
+    "unit_price": {
+      "count": 0,
+      "outlier_values": []
+    },
+    "standard_discount_pct": {
+      "count": 0,
+      "outlier_values": []
+    }
+  },
+  "pivot_tables": {
+    "product_category_by_region_mean_unit_price": [
+      {
+        "Central": 238.88666666666666,
+        "East": 254.34363636363634,
+        "North": 329.32666666666665,
+        "South": NaN,
+        "West": 115.51666666666667
+      },
+      {
+        "Central": 245.22666666666666,
+        "East": 221.5181818181818,
+        "North": 388.598,
+        "South": 287.0309090909091,
+        "West": 253.99666666666667
+      },
+      {
+        "Central": 289.63,
+        "East": 320.1933333333333,
+        "North": 74.19,
+        "South": 225.358,
+        "West": 310.8
+      },
+      {
+        "Central": 225.23000000000002,
+        "East": 229.73250000000002,
+        "North": 302.5475,
+        "South": 147.65,
+        "West": 284.65
+      },
+      {
+        "Central": 200.48666666666668,
+        "East": 300.4414285714286,
+        "North": 101.95333333333333,
+        "South": 370.53,
+        "West": 412.076
+      },
+      {
+        "Central": 339.1566666666667,
+        "East": 281.71,
+        "North": 241.24428571428572,
+        "South": 136.29,
+        "West": 304.87
+      }
+    ],
+    "status_by_department_count_order_id": [
+      {
+        "Apparel": 7,
+        "Home": 1,
+        "Media": 1,
+        "Recreation": 6,
+        "Tech": 1
+      },
+      {
+        "Apparel": 23,
+        "Home": 7,
+        "Media": 12,
+        "Recreation": 23,
+        "Tech": 19
+      },
+      {
+        "Apparel": 5,
+        "Home": 1,
+        "Media": 3,
+        "Recreation": 5,
+        "Tech": 3
+      },
+      {
+        "Apparel": 7,
+        "Home": 4,
+        "Media": 4,
+        "Recreation": 14,
+        "Tech": 4
+      }
+    ]
+  },
+  "categorized_column": "unit_price",
+  "category_counts": {
+    "High": 51,
+    "Low": 50,
+    "Medium": 49
+  }
+}
