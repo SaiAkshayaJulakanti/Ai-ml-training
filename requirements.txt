@@ -3,5 +3,6 @@ pandas>=2.0
 scipy>=1.10
 matplotlib>=3.8
 seaborn>=0.13
+pypdf>=5.0
 pytest>=7.0
 pytest-cov>=4.0
