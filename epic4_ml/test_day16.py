@@ -19,7 +19,9 @@ if str(file_dir) not in sys.path:
 
 try:
     from epic4_ml.day16_ml_basics import (
+        DATA_DIR,
         MLExperiment,
+        _clean_telco_frame,
         class_distribution,
         demonstrate_leakage,
         get_baseline_scores,
@@ -28,7 +30,9 @@ try:
     )
 except ImportError:
     from day16_ml_basics import (
+        DATA_DIR,
         MLExperiment,
+        _clean_telco_frame,
         class_distribution,
         demonstrate_leakage,
         get_baseline_scores,
@@ -247,3 +251,82 @@ def test_ml_experiment_summary_contents_and_recorded_models(tmp_path):
 def test_ml_experiment_unknown_dataset_raises():
     with pytest.raises(ValueError):
         MLExperiment("not_a_dataset")
+
+
+# --------------------------------------------------------------------------
+# Telco Customer Churn (the classification dataset used in main())
+# --------------------------------------------------------------------------
+@pytest.fixture
+def raw_telco():
+    """A tiny hand-made table shaped like the raw Telco CSV."""
+    return pd.DataFrame({
+        "customerID": ["A-1", "B-2", "C-3", "D-4"],
+        "gender": ["Female", "Male", "Male", "Female"],
+        "tenure": [1, 34, 0, 12],
+        "Contract": ["Month-to-month", "One year", "Two year", "Month-to-month"],
+        "MonthlyCharges": [29.85, 56.95, 52.55, 70.0],
+        "TotalCharges": ["29.85", "1889.5", " ", "840.0"],   # blank = never billed
+        "Churn": ["No", "No", "No", "Yes"],
+    })
+
+
+def test_clean_telco_frame_encodes_everything_numeric(raw_telco):
+    X, y = _clean_telco_frame(raw_telco)
+    assert "customerID" not in X.columns and "Churn" not in X.columns
+    assert all(pd.api.types.is_numeric_dtype(dtype) for dtype in X.dtypes)
+    assert list(y) == [0, 0, 0, 1]
+    assert len(X) == len(y) == 4
+
+
+def test_clean_telco_frame_fixes_blank_total_charges(raw_telco):
+    X, _ = _clean_telco_frame(raw_telco)
+    assert X["TotalCharges"].tolist() == [29.85, 1889.5, 0.0, 840.0]
+    assert not X.isna().any().any()
+
+
+def test_load_telco_downloads_once_then_uses_cached_csv(tmp_path, monkeypatch, raw_telco):
+    module = sys.modules[load_ml_dataset.__module__]
+    calls = {"n": 0}
+
+    def fake_download():
+        calls["n"] += 1
+        return raw_telco
+
+    monkeypatch.setattr(module, "_download_telco_raw", fake_download)
+    X1, y1 = load_ml_dataset("telco_churn", data_dir=tmp_path)
+    X2, y2 = load_ml_dataset("telco_churn", data_dir=tmp_path)
+    assert calls["n"] == 1
+    assert (tmp_path / "telco_churn.csv").exists()
+    pd.testing.assert_frame_equal(X1, X2)
+    assert list(y2) == [0, 0, 0, 1]
+
+
+telco_csv_present = (DATA_DIR / "telco_churn.csv").exists()
+
+
+@pytest.mark.skipif(not telco_csv_present, reason="epic4_ml/data/telco_churn.csv not present")
+def test_real_telco_dataset_shape_and_churn_rate():
+    X, y = load_ml_dataset("telco_churn")
+    assert len(X) == len(y) == 7043
+    assert set(y.unique()) == {0, 1}
+    assert y.mean() == pytest.approx(0.2654, abs=0.001)
+
+
+@pytest.mark.skipif(not telco_csv_present, reason="epic4_ml/data/telco_churn.csv not present")
+def test_real_telco_stratified_split_keeps_churn_rate_within_2_percent():
+    X, y = load_ml_dataset("telco_churn")
+    _, _, y_train, y_test = split_data(X, y, test_size=0.2, stratify=True)
+    assert y_train.mean() == pytest.approx(y.mean(), abs=0.02)
+    assert y_test.mean() == pytest.approx(y.mean(), abs=0.02)
+    assert len(y_test) == pytest.approx(0.2 * len(y), abs=1)
+
+
+@pytest.mark.skipif(not telco_csv_present, reason="epic4_ml/data/telco_churn.csv not present")
+def test_real_telco_baseline_high_accuracy_but_zero_f1():
+    # The classic imbalanced-data trap: always predicting "no churn" scores
+    # ~73% accuracy while catching zero churners.
+    X, y = load_ml_dataset("telco_churn")
+    scores = get_baseline_scores(*split_data(X, y, stratify=True), task="classification")
+    assert scores["majority_class"] == 0
+    assert scores["test_accuracy"] == pytest.approx(0.7346, abs=0.005)
+    assert scores["test_f1"] == 0.0

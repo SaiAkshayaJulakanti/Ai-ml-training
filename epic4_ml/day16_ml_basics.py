@@ -8,11 +8,13 @@ The ML workflow this file walks through, in order:
     data -> features/target -> train/test split -> baseline -> (real models, later)
 
 Datasets used (both saved as CSV under `epic4_ml/data/` on first load):
-    - Regression:     "diabetes"       (442 rows, predict disease progression)
-    - Classification: "breast_cancer"  (569 rows, malignant vs. benign)
-    - Also supported: "california_housing" (20,640 rows, regression). It is
-      downloaded by scikit-learn on first use, so it needs internet access
-      the first time; after that it is cached as a CSV like the others.
+    - Regression:     "diabetes"     (442 rows, predict disease progression)
+    - Classification: "telco_churn"  (7,043 customers, will they churn? ~26.5% do)
+    - Also supported: "breast_cancer" (569 rows, bundled with scikit-learn) and
+      "california_housing" (20,640 rows, regression; downloaded by
+      scikit-learn on first use). Telco and California Housing need
+      internet access the first time; after that every dataset is cached as
+      a CSV under epic4_ml/data/.
 
 =============================================================================
 Overfitting, underfitting, and bias vs. variance (in plain words)
@@ -39,8 +41,9 @@ Bias vs. variance: bias is error from being too simple / making wrong
 Why baselines matter: a Dummy model that ignores the features entirely sets
     the score any real model has to beat. If a fancy model barely beats the
     baseline, it has not really learned much. (Note the classification
-    trap: on breast cancer, always guessing the majority class already
-    scores ~63% accuracy, so "63% accuracy" is NOT impressive there.)
+    trap: on Telco churn, always guessing "no churn" already scores ~73%
+    accuracy, so "73% accuracy" is NOT impressive there - and that dummy
+    model catches zero churners, which is why F1 matters too.)
 =============================================================================
 """
 
@@ -66,21 +69,62 @@ RANDOM_STATE = 42
 DEFAULT_TEST_SIZE = 0.2
 
 REGRESSION_DATASET = "diabetes"
-CLASSIFICATION_DATASET = "breast_cancer"
+CLASSIFICATION_DATASET = "telco_churn"
 
 TARGET_COLUMN = "target"
+TELCO_URL = "https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv"
+
 DATASET_TASKS = {
     "diabetes": "regression",
     "california_housing": "regression",
     "breast_cancer": "classification",
+    "telco_churn": "classification",
 }
 
 
 # --------------------------------------------------------------------------
 # 1. Loading datasets
 # --------------------------------------------------------------------------
+def _download_telco_raw() -> pd.DataFrame:
+    """Download the raw Telco Customer Churn CSV (needs internet access)."""
+    try:
+        return pd.read_csv(TELCO_URL)
+    except Exception as error:  # network/URL problems
+        raise ConnectionError(
+            f"Could not download the Telco Churn CSV from {TELCO_URL} ({error}). "
+            "Check your internet connection, or place the finished 'telco_churn.csv' in epic4_ml/data/."
+        ) from error
+
+
+def _clean_telco_frame(raw: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
+    """Turn the raw Telco table into an all-numeric feature matrix X and a 0/1 target y.
+
+    - `customerID` is dropped: a unique ID carries no signal and would only
+      let a model memorise individual customers.
+    - `TotalCharges` arrives as text with 11 blank entries. Those customers
+      have tenure 0 (brand new, never billed), so 0.0 is the correct value.
+    - `Churn` becomes 1 for "Yes" (customer left) and 0 for "No".
+    - Text columns (Contract, PaymentMethod, ...) are one-hot encoded so the
+      scaler and models can use them. This is safe to do BEFORE splitting:
+      it is a fixed per-row rewrite that learns nothing from the data, so
+      it cannot leak test information (unlike fitting a scaler or imputer).
+    """
+    df = raw.drop(columns=["customerID"], errors="ignore").copy()
+    df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce").fillna(0.0)
+    y = (df.pop("Churn").astype(str).str.strip().str.lower() == "yes").astype(int)
+    X = pd.get_dummies(df, drop_first=True, dtype=int)
+    return X, y
+
+
+def _fetch_dataset(name: str) -> Tuple[pd.DataFrame, pd.Series]:
+    """Fetch a supported dataset from its source (scikit-learn or the Telco CSV URL)."""
+    if name == "telco_churn":
+        return _clean_telco_frame(_download_telco_raw())
+    return _fetch_from_sklearn(name)
+
+
 def _fetch_from_sklearn(name: str) -> Tuple[pd.DataFrame, pd.Series]:
-    """Load one of the supported datasets straight from scikit-learn."""
+    """Load one of the scikit-learn-provided datasets."""
     if name == "diabetes":
         from sklearn.datasets import load_diabetes
 
@@ -116,7 +160,7 @@ def load_ml_dataset(name: str, data_dir: Optional[Path] = None) -> Tuple[pd.Data
     Later calls read that CSV, so the project works offline afterwards.
 
     Args:
-        name: 'diabetes', 'breast_cancer', or 'california_housing'.
+        name: 'diabetes', 'telco_churn', 'breast_cancer', or 'california_housing'.
         data_dir: Folder for the CSV cache (default: epic4_ml/data/).
 
     Returns:
@@ -133,7 +177,7 @@ def load_ml_dataset(name: str, data_dir: Optional[Path] = None) -> Tuple[pd.Data
     if csv_path.exists():
         frame = pd.read_csv(csv_path)
     else:
-        X_raw, y_raw = _fetch_from_sklearn(key)
+        X_raw, y_raw = _fetch_dataset(key)
         frame = X_raw.copy()
         frame[TARGET_COLUMN] = y_raw.to_numpy()
         folder.mkdir(parents=True, exist_ok=True)
@@ -387,6 +431,7 @@ class MLExperiment:
         self.baseline_scores: Optional[Dict[str, Any]] = None
         self.model_scores: Dict[str, float] = {}
         self.X_train = self.X_test = self.y_train = self.y_test = None
+        self.preprocessor: Optional[Any] = None
 
     def run(self) -> "MLExperiment":
         """Load the dataset, split it, and compute baseline scores. Returns self."""
@@ -410,6 +455,10 @@ class MLExperiment:
     def record_model(self, name: str, score: float) -> None:
         """Store a real model's score so summary() can compare it with the baseline."""
         self.model_scores[name] = float(score)
+
+    def set_preprocessor(self, preprocessor: Any) -> None:
+        """Attach a fitted preprocessor (e.g. Day 17's ColumnTransformer) to this experiment, for reuse later in the week."""
+        self.preprocessor = preprocessor
 
     def summary(self) -> str:
         """Return a short human-readable report of this experiment."""
